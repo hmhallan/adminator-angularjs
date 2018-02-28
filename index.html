@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Dashboard</title>
+
+
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="node_modules/ui-bootstrap4/dist/ui-bootstrap-csp.css">
+    <link rel="stylesheet" href="node_modules/fullcalendar/dist/fullcalendar.css">
+    <link rel="stylesheet" href="assets/static/fonts/icons/font-awesome.css">
+    <link rel="stylesheet" href="assets/static/fonts/icons/themify-icons.css">
+    <link rel="stylesheet" href="assets/styles/index.css">
+    <link rel="stylesheet" href="assets/custom.css">
+
+    <!-- build:js scripts/vendor.js -->
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/underscore/underscore-min.js"></script>
+    <script src="node_modules/moment/min/moment.min.js"></script>
+    <script src="node_modules/chosen-js/chosen.jquery.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script src="node_modules/fullcalendar/dist/fullcalendar.js"></script>
+    <script src="node_modules/chart.js/dist/Chart.min.js"></script>
+
+    <!--
+    <script src="node_modules/masonry-layout/dist/masonry.pkgd.js"></script>
+    -->
+
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/angular-route/angular-route.min.js"></script>
+    <script src="node_modules/angular-aria/angular-aria.min.js"></script>
+    <script src="node_modules/angular-animate/angular-animate.min.js"></script>
+    <script src="node_modules/ngstorage/ngStorage.min.js"></script>
+    <script src="node_modules/ui-bootstrap4/dist/ui-bootstrap-tpls.js"></script>
+    <script src="node_modules/angular-fullcalendar/dist/angular-fullcalendar.js"></script>
+    <script src="node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
+    <!-- endbuild -->
+
+    <!-- injector:js -->
+    <script src="modules/core/app.js"></script>
+    <script src="modules/core/app.constants.js"></script>
+
+
+    <script src="modules/dashboard/dashboard.controller.js"></script>
+    <script src="modules/demo/calendar.controller.js"></script>
+
+    <script src="modules/layout/header.controller.js"></script>
+    <script src="modules/layout/sidebar.controller.js"></script>
+
+    <!-- endinjector -->
+    <!-- endbuild -->
+
+
+    <style>
+      #loader {
+        transition: all 0.3s ease-in-out;
+        opacity: 1;
+        visibility: visible;
+        position: fixed;
+        height: 100vh;
+        width: 100%;
+        background: #fff;
+        z-index: 90000;
+      }
+
+      #loader.fadeOut {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .spinner {
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: calc(50% - 20px);
+        left: calc(50% - 20px);
+        background-color: #333;
+        border-radius: 100%;
+        -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+        animation: sk-scaleout 1.0s infinite ease-in-out;
+      }
+
+      @-webkit-keyframes sk-scaleout {
+        0% { -webkit-transform: scale(0) }
+        100% {
+          -webkit-transform: scale(1.0);
+          opacity: 0;
+        }
+      }
+
+      @keyframes sk-scaleout {
+        0% {
+          -webkit-transform: scale(0);
+          transform: scale(0);
+        } 100% {
+          -webkit-transform: scale(1.0);
+          transform: scale(1.0);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body class="app">
+
+    <div id='loader'>
+      <div class="spinner"></div>
+    </div>
+
+    <script type="text/javascript">
+      window.addEventListener('load', () => {
+        const loader = document.getElementById('loader');
+        setTimeout(() => {
+          loader.classList.add('fadeOut');
+        }, 300);
+      });
+    </script>
+
+    <div>
+      <!-- sidebar -->
+      <div ng-include=" 'modules/layout/sidebar.html' "></div>
+
+      <!-- page -->
+      <div class="page-container">
+        
+        <!-- navbar -->
+        <div class="header navbar">
+          <div ng-include=" 'modules/layout/header.html' "></div>
+        </div>
+
+        <!-- main -->
+        <main class='main-content bgc-grey-100'>
+          <section ng-view=""></section>
+        </main>
+
+        <!-- footer -->
+        <div ng-include=" 'modules/layout/footer.html' "></div>
+
+      </div>
+    </div>
+  </body>
+</html>
